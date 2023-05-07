@@ -1,3 +1,5 @@
+#!/bin/bash -eu
+
 # ex. 1
 SOURCE_DIR=${1:-lab_uno}
 RM_LIST=${2:-2remove}

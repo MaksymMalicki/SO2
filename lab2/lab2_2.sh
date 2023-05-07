@@ -1,3 +1,5 @@
+#!/bin/bash -eu
+
 TARGET_DIR=${1:-}
 
 if [[ ! $# -eq 1 ]] ; then
