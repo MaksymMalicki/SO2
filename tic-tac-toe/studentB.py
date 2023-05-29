@@ -18,6 +18,7 @@ class PlayersMove:
                     self.current_player = False
                 elif choice == 'flip':
                     self.current_player = random.choice([True, False])
+                break
             else:
                 print("Invalid choice. Please enter 'first', 'second', or 'flip'.")
 
@@ -29,6 +30,7 @@ class PlayersMove:
                     self.is_computer_playing = True
                 elif choice == 'no':
                     self.is_computer_playing = False
+                break
             else:
                 print("Invalid choice. Please enter 'yes', 'no'")
 
@@ -40,6 +42,7 @@ class PlayersMove:
                     self.board_size = 3
                 elif choice == '5':
                     self.board_size = 5
+                break
             else:
                 print("Invalid choice. Please enter '3', '5'")
 
@@ -50,9 +53,19 @@ class PlayersMove:
     def get_player_move(self):
         return self.current_player
 
-    def player_move(self, coordinates, board):
-        while coordinates[0] > 3 or coordinates[1] > 3 or board[coordinates] != '_':
-            print('Podaj poprawne koordynaty')
+    def player_move(self, board):
+        coordinates = (0,0)
+        while True:
+            if coordinates[0] > 3 or coordinates[1] > 3 or board[coordinates] != '_':
+                print('Podaj poprawne koordynaty')
+            else:
+                coordinates_input = input("Enter the coordinates (x, y): ")
+                coordinates_input = coordinates_input.replace("(", "").replace(")", "")  # Remove parentheses
+                x, y = coordinates_input.split(",")  # Split the input at the comma
+                x = int(x.strip())  # Remove whitespace and convert to integer
+                y = int(y.strip())  # Remove whitespace and convert to integer
+                coordinates = (x, y)
+                break
         board[coordinates] = 'X' if self.current_player else '0'
         self.current_player = not self.current_player
 
