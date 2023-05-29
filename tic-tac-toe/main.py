@@ -1,6 +1,6 @@
 # This is a sample Python script.
 from studentB import PlayersMove
-from studentA import print_board, is_game_over, check_winner
+from studentA import print_board, is_game_over, check_winner, check_full
 
 if __name__ == '__main__':
 
@@ -14,5 +14,7 @@ if __name__ == '__main__':
     while not is_game_over(board):
         print_board(board)
         players_move.player_move(board)
-
-    print(f"The winner is {check_winner(board)}!")
+    if not check_full(board):
+        print(f"The winner is player {'one' if check_winner(board) else 'two'}!")
+    else:
+        print("Draw!")

@@ -52,7 +52,6 @@ class PlayersMove:
         self.assign_board_size()
 
     def player_move(self, board):
-        coordinates = (0,0)
         while True:
             coordinates_input = input("Enter the coordinates (x, y): ")
             coordinates_input = coordinates_input.replace("(", "").replace(")", "")

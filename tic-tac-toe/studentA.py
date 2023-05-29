@@ -22,6 +22,16 @@ def is_game_over(board):
 
     return False
 
+def check_full(board):
+    count = 0
+    for row in board:
+        for element in row:
+            if element == '_':
+                count += 1
+    if count == 0:
+        return True
+    return False
+
 def check_winner(board):
     size = len(board)
 
