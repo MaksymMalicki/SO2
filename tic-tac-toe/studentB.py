@@ -54,16 +54,17 @@ class PlayersMove:
     def player_move(self, board):
         coordinates = (0,0)
         while True:
-            if coordinates[0] > 3 or coordinates[1] > 3 or board[coordinates[0]][coordinates[1]] != '_':
+            coordinates_input = input("Enter the coordinates (x, y): ")
+            coordinates_input = coordinates_input.replace("(", "").replace(")", "")
+            x, y = coordinates_input.split(",")
+            x = int(x.strip())
+            y = int(y.strip())
+            coordinates = (x, y)
+            if abs(coordinates[0]) > 2 or abs(coordinates[1]) > 2 or board[coordinates[0]][coordinates[1]] != '_':
                 print('Podaj poprawne koordynaty')
             else:
-                coordinates_input = input("Enter the coordinates (x, y): ")
-                coordinates_input = coordinates_input.replace("(", "").replace(")", "")
-                x, y = coordinates_input.split(",")
-                x = int(x.strip())
-                y = int(y.strip())
-                coordinates = (x, y)
                 break
+        print(coordinates)
         board[coordinates[0]][coordinates[1]] = 'X' if self.current_player else '0'
         self.current_player = not self.current_player
 
