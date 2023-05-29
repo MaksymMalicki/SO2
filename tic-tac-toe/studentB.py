@@ -50,24 +50,41 @@ class PlayersMove:
         self.play_against_computer()
         self.define_starter()
         self.assign_board_size()
-    def get_player_move(self):
-        return self.current_player
 
     def player_move(self, board):
         coordinates = (0,0)
         while True:
-            if coordinates[0] > 3 or coordinates[1] > 3 or board[coordinates] != '_':
+            if coordinates[0] > 3 or coordinates[1] > 3 or board[coordinates[0]][coordinates[1]] != '_':
                 print('Podaj poprawne koordynaty')
             else:
                 coordinates_input = input("Enter the coordinates (x, y): ")
-                coordinates_input = coordinates_input.replace("(", "").replace(")", "")  # Remove parentheses
-                x, y = coordinates_input.split(",")  # Split the input at the comma
-                x = int(x.strip())  # Remove whitespace and convert to integer
-                y = int(y.strip())  # Remove whitespace and convert to integer
+                coordinates_input = coordinates_input.replace("(", "").replace(")", "")
+                x, y = coordinates_input.split(",")
+                x = int(x.strip())
+                y = int(y.strip())
                 coordinates = (x, y)
                 break
-        board[coordinates] = 'X' if self.current_player else '0'
+        board[coordinates[0]][coordinates[1]] = 'X' if self.current_player else '0'
         self.current_player = not self.current_player
 
-    def ai_move(self):
+    def check_possible_win(self, array):
+        n = len(array)
+        player_sign = 'X' if self.current_player else '0'
+        if array.count(player_sign) == n-1 and array.count('_') == 1:
+            return True
+        return False
+    def make_computer_random_move(self):
         pass
+    def make_computer_block_move(self):
+        pass
+    def computer_move(self, board):
+        computer_block = False
+        for row in board:
+            computer_block = self.check_possible_win(row)
+        for col in range(len(board[0])):
+            column = [board[row][col] for row in range(len(board))]
+            computer_block = self.check_possible_win(column)
+        if computer_block:
+            self.make_computer_block_move()
+        else:
+            self.make_computer_random_move()
