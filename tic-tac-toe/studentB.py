@@ -11,7 +11,7 @@ class PlayersMove:
     def define_starter(self):
         while True:
             choice = input("Start first - type 'first', start second - type 'second', Coin flip - type 'flip'")
-            if choice.lower() in ['first', 'second', 'coin_flip']:
+            if choice.lower() in ['first', 'second', 'flip']:
                 if choice == 'first':
                     self.current_player = True
                 elif choice == 'second':
