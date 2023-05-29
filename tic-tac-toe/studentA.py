@@ -1,9 +1,7 @@
 def print_board(array):
     for row in array:
         print(row)
-
-array = [['X','_','_'],['X','_','_'],['X','_','_'],['_','_','_']]
-print_board(array)
+    print()
 
 def is_game_over(board):
     for row in board:
@@ -21,6 +19,3 @@ def is_game_over(board):
 
     return False
 
-
-
-print(is_game_over(array))
